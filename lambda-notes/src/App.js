@@ -3,6 +3,7 @@ import NotesList from "./Components/NotesList";
 import axios from "axios";
 import { Route, Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
+import NewNote from "./Components/NewNotesForm";
 
 //styling.///
 const MainApp = styled.div`
@@ -20,8 +21,8 @@ const SideBar = styled.div`
 `;
 
 const SideBarHeader = styled.h1`
-word-spacing: 8px;
-margin: 4% 8%;
+  word-spacing: 8px;
+  margin: 4% 8%;
 `;
 
 const MainPage = styled.div`
@@ -93,12 +94,13 @@ class App extends Component {
         <SideBar>
           <SideBarHeader>Lambda Notes</SideBarHeader>
           <ButtonBox>
-            <Button to="/">View Your Notes</Button>
-            <Button to="/NoteForm">+ Create a new note</Button>
+            <Button to="/NotesList">View Your Notes</Button>
+            <Button to="/NewNote">+ Create a new note</Button>
           </ButtonBox>
         </SideBar>
         <MainPage>
-          <NotesList notes={this.state.notes} />
+          <Route path="/NotesList" exact render={props => <NotesList {...props}/>}/>
+          <Route path="/NewNote" exact component={NewNote} />
         </MainPage>
       </MainApp>
     );
