@@ -15,7 +15,7 @@ class NewNote extends Component {
   //Change Handler//
 
   inputChangeHandler = e => {
-    console.log(e)
+    console.log(e);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -31,7 +31,7 @@ class NewNote extends Component {
       .catch(err => console.log("Error", err));
     this.setState({
       title: "",
-      textBody: "",
+      textBody: ""
     });
   };
 

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Route, Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import NewNote from "./Components/NewNotesForm";
+import ViewNote from "./Components/ViewNote";
 
 //styling.///
 const MainApp = styled.div`
@@ -58,33 +59,24 @@ class App extends Component {
     };
   }
 
-  //Get request to get notes for the list.//
-
-  componentDidMount() {
-    axios.get(`https://fe-notes.herokuapp.com/note/get/all`).then(res => {
-      const notes = res.data;
-      this.setState({ notes: res.data });
-    });
-  }
-
   //Delete a note//
 
-  deleteNote = id => {
-    axios
-      .delete("https://fe-notes.herokuapp.com/note/delete/" + id)
-      .then(res => {
-        console.log("DELETE NOTE", res);
-        if (res.data.success === "Note successfully deleted") {
-          let newNotes = this.state.notes.filter(note => {
-            return note._id != id;
-          });
-          this.setState({ notes: newNotes });
-        }
-      })
-      .catch(err => {
-        console.log("DELETE Error", err);
-      });
-  };
+  // deleteNote = id => {
+  //   axios
+  //     .delete("https://fe-notes.herokuapp.com/note/delete/" + id)
+  //     .then(res => {
+  //       console.log("DELETE NOTE", res);
+  //       if (res.data.success === "Note successfully deleted") {
+  //         let newNotes = this.state.notes.filter(note => {
+  //           return note._id != id;
+  //         });
+  //         this.setState({ notes: newNotes });
+  //       }
+  //     })
+  //     .catch(err => {
+  //       console.log("DELETE Error", err);
+  //     });
+  // };
 
   //Rendering NotesList.  Need to refactor into using React Router.
 
@@ -99,8 +91,13 @@ class App extends Component {
           </ButtonBox>
         </SideBar>
         <MainPage>
-          <Route path="/NotesList" exact render={props => <NotesList {...props}/>}/>
+          <Route
+            path="/NotesList"
+            exact
+            render={props => <NotesList {...props} />}
+          />
           <Route path="/NewNote" exact component={NewNote} />
+          <Route exact path="/note/:id" render={props => <ViewNote {...props} />}/>
         </MainPage>
       </MainApp>
     );
