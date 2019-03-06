@@ -59,25 +59,6 @@ class App extends Component {
     };
   }
 
-  //Delete a note//
-
-  // deleteNote = id => {
-  //   axios
-  //     .delete("https://fe-notes.herokuapp.com/note/delete/" + id)
-  //     .then(res => {
-  //       console.log("DELETE NOTE", res);
-  //       if (res.data.success === "Note successfully deleted") {
-  //         let newNotes = this.state.notes.filter(note => {
-  //           return note._id != id;
-  //         });
-  //         this.setState({ notes: newNotes });
-  //       }
-  //     })
-  //     .catch(err => {
-  //       console.log("DELETE Error", err);
-  //     });
-  // };
-
   //Rendering NotesList.  Need to refactor into using React Router.
 
   render() {

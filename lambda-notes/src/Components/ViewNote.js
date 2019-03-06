@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import DeleteNote from "./DeleteNote";
 
 class ViewNote extends Component {
   constructor(props) {
@@ -32,7 +33,8 @@ class ViewNote extends Component {
 
   render() {
     return (
-      <div className>
+      <div>
+        
         <div>
           <h3>{this.state.note.title}</h3>
           <p>{this.state.note.textBody}</p>
