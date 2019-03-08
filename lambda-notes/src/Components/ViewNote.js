@@ -8,9 +8,11 @@ class ViewNote extends Component {
     super(props);
     this.state = {
       note: {},
-      loading: true
+      loading: true,
+      
     };
   }
+  
 
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -32,14 +34,17 @@ class ViewNote extends Component {
   };
 
   render() {
+    
     return (
       <div>
-        
         <div>
+        <button>Delete</button>
+          <DeleteNote id= {this.props.match.params.id} {...this.props} />
           <h3>{this.state.note.title}</h3>
           <p>{this.state.note.textBody}</p>
         </div>
       </div>
+  
     );
   }
 }
