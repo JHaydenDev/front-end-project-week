@@ -3,6 +3,37 @@ import axios from "axios";
 import { Route, Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+const Button = styled.button`
+  color: white;
+  text-decoration: none;
+  background-color: lightseagreen;
+  margin: 10% auto;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+  width: 80%;
+  font-weight: bold;
+  padding-top: 10px;
+`;
+
+const InputTitle = styled.input`
+  height: 30px;
+  width: 200px;
+  margin: 5%;
+`;
+
+const InputBody = styled.input`
+  width: 90%;
+  height: 445px;
+  margin: 5%;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 class NewNote extends Component {
   constructor(props) {
     super(props);
@@ -38,9 +69,9 @@ class NewNote extends Component {
   render() {
     return (
       <div className="createContainer">
-        <h1>Create New Note:</h1>
-        <form className="form" onSubmit={this.addNew}>
-          <input
+        <h1> Create New Note: </h1>{" "}
+        <Form className="form" onSubmit={this.addNew}>
+          <InputTitle
             className="title"
             type="textarea"
             name="title"
@@ -48,17 +79,16 @@ class NewNote extends Component {
             onChange={this.inputChangeHandler}
             value={this.state.title}
           />
-
-          <input
+          <InputBody
             className="textBody"
             type="textarea"
             name="textBody"
             placeholder="Note Content"
             onChange={this.inputChangeHandler}
             value={this.state.textBody}
-          />
-          <button type="submit">Save</button>
-        </form>
+          />{" "}
+          <Button type="submit"> Save </Button>{" "}
+        </Form>{" "}
       </div>
     );
   }

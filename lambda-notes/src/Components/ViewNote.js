@@ -3,6 +3,37 @@ import axios from "axios";
 import { Link, Route, NavLink } from "react-router-dom";
 import DeleteNote from "./DeleteNote";
 import EditNote from "./EditNote";
+import styled from "styled-components";
+
+//Styling//
+const ViewNoteContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+const EditDelete = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:15%;
+`;
+
+const NoteBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+const Edit = styled(NavLink)`
+  width:50%
+`;
+const Delete = styled.a`
+width:50%
+`;
+const Title = styled.h2`
+width:100%
+`;
+
 
 class ViewNote extends Component {
   constructor(props) {
@@ -41,22 +72,26 @@ class ViewNote extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <NavLink to={`/note/edit/${this.props.match.params.id}`}>
+      <ViewNoteContainer>
+        <EditDelete>
+          <Edit to={`/note/edit/${this.props.match.params.id}`}>
             Edit
-          </NavLink>
+          </Edit>
 
           <div>
-            <a onClick={this.toggleHidden.bind(this)}>
+            <Delete href="#" onClick={this.toggleHidden.bind(this)}>
               Delete
-            </a>
-            {!this.state.isHidden && <DeleteNote id={this.props.match.params.id} {...this.props} />}
+            </Delete>
+            {!this.state.isHidden && (
+              <DeleteNote id={this.props.match.params.id} {...this.props} />
+            )}
           </div>
-          <h3>{this.state.note.title}</h3>
-          <p>{this.state.note.textBody}</p>
-        </div>
-      </div>
+          <NoteBox>
+            <Title>{this.state.note.title}</Title>
+            <p>{this.state.note.textBody}</p>
+          </NoteBox>
+        </EditDelete>
+      </ViewNoteContainer>
     );
   }
 }

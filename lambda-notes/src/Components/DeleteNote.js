@@ -12,6 +12,7 @@ const DeleteMod = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 3%;
+  margin: 10%;
 `;
 
 const ButtonHouse = styled.div`
@@ -40,7 +41,7 @@ class DeleteNote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isHidden: 
+      isHidden: false
     }
   }
 
@@ -57,15 +58,22 @@ class DeleteNote extends React.Component {
       });
   };
 
+  toggleHidden() {
+    this.setState({
+      isHidden: !this.state.isHidden
+    });
+  }
+
   render() {
     return (
       <DeleteMod>
         <h2>Are you sure you want to Delete this?</h2>
-        <ButtonHouse className="btn">
+        <ButtonHouse>
           <DeleteButton onClick={() => this.deleteNote(this.props.id)}>
             Delete
           </DeleteButton>
-          <NoButton> No </NoButton>
+          <NoButton onClick={this.toggleHidden}> No </NoButton>
+          
         </ButtonHouse>
       </DeleteMod>
     );
