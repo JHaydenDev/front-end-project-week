@@ -36,6 +36,7 @@ class ViewNote extends Component {
   //   document.getElementById('DeleteNote').style.cssText = 'display: flex';
   // }
 
+  EditNoteHandler;
 
   render() {
     return (
@@ -44,10 +45,10 @@ class ViewNote extends Component {
           <NavLink to={`/note/edit/${this.props.match.params.id}`}>
             Edit
           </NavLink>
-          <Route path={`/note/edit/:id`} component={EditNote} />
+          <Route path="/note/edit/:id" component={EditNote} />
           <button>Delete</button>
 
-          {/* <DeleteNote id={this.props.match.params.id} {...this.props} /> */}
+          <DeleteNote id={this.props.match.params.id} {...this.props} />
           <h3>{this.state.note.title}</h3>
           <p>{this.state.note.textBody}</p>
         </div>

@@ -57,8 +57,27 @@ class EditNote extends React.Component {
   //   };
 
   render() {
-    return <h1>Edit a thing</h1>;
-  }
+    return (
+      <div>
+          <h2>Edit Note:</h2>
+        <form>
+          <textarea 
+                // type='text' 
+                // name='title'
+                // onChange={}
+                // value={} 
+                />
+  
+            <textarea
+                // type='text' 
+                // name='textBody'
+                // onChange={}
+                // value={}
+                 />
+            <button>Update</button>       
+        </form>
+      </div>
+    )}
 }
 
 export default EditNote;
