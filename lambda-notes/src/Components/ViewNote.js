@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Route, NavLink } from "react-router-dom";
 import DeleteNote from "./DeleteNote";
+import EditNote from "./EditNote";
 
 class ViewNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
       note: {},
-      loading: true,
-      
+      loading: true
     };
   }
-  
 
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -33,18 +32,26 @@ class ViewNote extends Component {
       });
   };
 
+  // displayModal(){
+  //   document.getElementById('DeleteNote').style.cssText = 'display: flex';
+  // }
+
+
   render() {
-    
     return (
       <div>
         <div>
-        <button>Delete</button>
-          <DeleteNote id= {this.props.match.params.id} {...this.props} />
+          <NavLink to={`/note/edit/${this.props.match.params.id}`}>
+            Edit
+          </NavLink>
+          <Route path={`/note/edit/:id`} component={EditNote} />
+          <button>Delete</button>
+
+          {/* <DeleteNote id={this.props.match.params.id} {...this.props} /> */}
           <h3>{this.state.note.title}</h3>
           <p>{this.state.note.textBody}</p>
         </div>
       </div>
-  
     );
   }
 }

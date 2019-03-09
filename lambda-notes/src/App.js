@@ -78,7 +78,11 @@ class App extends Component {
             render={props => <NotesList {...props} />}
           />
           <Route path="/NewNote" exact component={NewNote} />
-          <Route exact path="/note/:id" render={props => <ViewNote {...props} />}/>
+          <Route
+            exact
+            path="/note/:id"
+            render={props => <ViewNote {...props} />}
+          />
         </MainPage>
       </MainApp>
     );
