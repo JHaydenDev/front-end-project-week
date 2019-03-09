@@ -40,7 +40,7 @@ class DeleteNote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      isHidden: 
     }
   }
 
@@ -59,7 +59,7 @@ class DeleteNote extends React.Component {
 
   render() {
     return (
-      <DeleteMod >
+      <DeleteMod>
         <h2>Are you sure you want to Delete this?</h2>
         <ButtonHouse className="btn">
           <DeleteButton onClick={() => this.deleteNote(this.props.id)}>

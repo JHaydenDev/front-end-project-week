@@ -60,7 +60,7 @@ class App extends Component {
     };
   }
 
-  //Rendering NotesList.  Need to refactor into using React Router.
+  //Rendering NotesList.  
 
   render() {
     return (

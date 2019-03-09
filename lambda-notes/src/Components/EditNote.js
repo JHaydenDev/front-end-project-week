@@ -50,9 +50,9 @@ class EditNote extends Component {
       .catch(err => console.log(err));
   };
 
-  updateTitle = e => {
+  updatedTitle = e => {
     this.setState({
-      updateTitle: e.target.value,
+      updatedTitle: e.target.value,
       noteToEdit: { textTitle: e.target.value }
     });
   };
@@ -65,6 +65,7 @@ class EditNote extends Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <div className="contentContainer">
         <h2>Edit Note:</h2>
@@ -73,7 +74,7 @@ class EditNote extends Component {
             className="title"
             type="text"
             name="title"
-            onChange={this.updateTitle}
+            onChange={this.updatedTitle}
             value={this.state.noteToEdit.title}
           />
 

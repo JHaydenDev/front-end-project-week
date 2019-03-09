@@ -9,7 +9,8 @@ class ViewNote extends Component {
     super(props);
     this.state = {
       note: {},
-      loading: true
+      loading: true,
+      isHidden: true
     };
   }
 
@@ -32,11 +33,11 @@ class ViewNote extends Component {
       });
   };
 
-  // displayModal(){
-  //   document.getElementById('DeleteNote').style.cssText = 'display: flex';
-  // }
-
-  EditNoteHandler;
+  toggleHidden() {
+    this.setState({
+      isHidden: !this.state.isHidden
+    });
+  }
 
   render() {
     return (
@@ -45,10 +46,13 @@ class ViewNote extends Component {
           <NavLink to={`/note/edit/${this.props.match.params.id}`}>
             Edit
           </NavLink>
-          
-          <button>Delete</button>
 
-          <DeleteNote id={this.props.match.params.id} {...this.props} />
+          <div>
+            <a onClick={this.toggleHidden.bind(this)}>
+              Delete
+            </a>
+            {!this.state.isHidden && <DeleteNote id={this.props.match.params.id} {...this.props} />}
+          </div>
           <h3>{this.state.note.title}</h3>
           <p>{this.state.note.textBody}</p>
         </div>
