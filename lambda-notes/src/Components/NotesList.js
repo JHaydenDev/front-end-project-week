@@ -6,6 +6,14 @@ import axios from "axios";
 
 //Styling//
 
+const Title = styled.h3`
+overflow-wrap: break-word;
+`;
+
+const Body = styled.div`
+overflow-wrap: break-word;
+`;
+
 const StyledList = styled.div`
   display: flex;
   flex-direction: row;
@@ -65,9 +73,9 @@ class NotesList extends Component {
         {this.state.notes.map(note => {
           return (
             <StyledLink to={`Note/${note._id}`}>
-              <h3>{note.title}</h3>
+              <Title>{note.title}</Title>
               <hr />
-              <div>{note.textBody.substr(0, 100)} </div>
+              <Body>{note.textBody.substr(0, 100)} </Body>
             </StyledLink>
           );
         })}

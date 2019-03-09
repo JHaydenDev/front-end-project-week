@@ -17,6 +17,10 @@ const Button = styled.button`
   padding-top: 10px;
 `;
 
+const H1 = styled.h1`
+  margin: 5%;
+`;
+
 const InputTitle = styled.input`
   height: 30px;
   width: 200px;
@@ -69,7 +73,7 @@ class NewNote extends Component {
   render() {
     return (
       <div className="createContainer">
-        <h1> Create New Note: </h1>{" "}
+        <H1> Create New Note: </H1>{" "}
         <Form className="form" onSubmit={this.addNew}>
           <InputTitle
             className="title"

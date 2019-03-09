@@ -1,5 +1,41 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const Button = styled.button`
+  color: white;
+  text-decoration: none;
+  background-color: lightseagreen;
+  margin: 10% auto;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+  width: 80%;
+  font-weight: bold;
+  padding-top: 10px;
+`;
+
+const H1 = styled.h1`
+  margin: 5%;
+`;
+
+const InputTitle = styled.input`
+  height: 30px;
+  width: 200px;
+  margin: 5%;
+`;
+
+const InputBody = styled.input`
+  width: 90%;
+  height: 445px;
+  margin: 5%;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 class EditNote extends Component {
   constructor(props) {
@@ -68,9 +104,9 @@ class EditNote extends Component {
     console.log(this.state)
     return (
       <div className="contentContainer">
-        <h2>Edit Note:</h2>
-        <form className="form" onSubmit={this.submitEditedNote}>
-          <input
+        <H1>Edit Note:</H1>
+        <Form className="form" onSubmit={this.submitEditedNote}>
+          <InputTitle
             className="title"
             type="text"
             name="title"
@@ -78,17 +114,17 @@ class EditNote extends Component {
             value={this.state.noteToEdit.title}
           />
 
-          <input
+          <InputBody
             className="textBody"
             type="text"
             name="textBody"
             onChange={this.updateTeaxtBody}
             value={this.state.noteToEdit.textBody}
           />
-          <button className="button" type="submit">
+          <Button className="button" type="submit">
             Update
-          </button>
-        </form>
+          </Button>
+        </Form>
       </div>
     );
   }
