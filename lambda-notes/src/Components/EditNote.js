@@ -1,83 +1,95 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "axios";
-import { Route, Link, NavLink } from "react-router-dom";
-import styled from "styled-components";
-//Styling
-// const DeleteMod = styled.div`
-//   height: 175px;
-//   background-color: white;
-//   border: solid 1px;
-//   flex-wrap: wrap;
-//   display: flex;
-//   justify-content: space-around;
-//   padding: 3%;
-// `;
 
-// const ButtonHouse = styled.div`
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-// `;
-
-// const DeleteButton = styled.button`
-//   width: 30%;
-//   background-color: red;
-//   color: white;
-//   font-size: 1.1rem;
-//   margin: 5%;
-// `;
-
-// const NoButton = styled.button`
-//   width: 30%;
-//   background-color: lightseagreen;
-//   color: white;
-//   font-size: 1.1rem;
-//   margin: 5%;
-// `;
-
-class EditNote extends React.Component {
+class EditNote extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    console.log(this.props);
+    this.state = {
+      noteToEdit: {},
+      updatedTitle: null,
+      updatedText: null,
+      loading: true
+    };
   }
 
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    this.fetchNote(id);
+  }
 
-  //Axios request//
+  fetchNote = id => {
+    axios
+      .get(`https://fe-notes.herokuapp.com/note/get/${id}`)
+      .then(response => {
+        this.setState({
+          noteToEdit: response.data,
+          loading: false
+        });
+      })
+      .catch(err => {
+        this.setState({ loading: false });
+        console.log(err);
+      });
+  };
 
-  // EditNote = id => {
-  //     axios
-  //       .get(`https://fe-notes.herokuapp.com/note/get/${id}`)
-  //       .then(response => {
-  //         this.props.history.push("/NotesList");
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //   };
+  submitEditedNote = e => {
+    e.preventDefault();
+    axios
+      .put(
+        `https://fe-notes.herokuapp.com/note/edit/${
+          this.props.match.params.id
+        }`,
+        {
+          title: this.state.updatedTitle,
+          textBody: this.state.updatedText
+        }
+      )
+      .then(response => {
+        this.props.history.push(`/note/${this.props.match.params.id}`);
+      })
+      .catch(err => console.log(err));
+  };
+
+  updateTitle = e => {
+    this.setState({
+      updateTitle: e.target.value,
+      noteToEdit: { textTitle: e.target.value }
+    });
+  };
+
+  updateTeaxtBody = e => {
+    this.setState({
+      updatedText: e.target.value,
+      noteToEdit: { textBody: e.target.value }
+    });
+  };
 
   render() {
     return (
-      <div>
-          <h2>Edit Note:</h2>
-        <form>
-          <textarea 
-                // type='text' 
-                // name='title'
-                // onChange={}
-                // value={} 
-                />
-  
-            <textarea
-                // type='text' 
-                // name='textBody'
-                // onChange={}
-                // value={}
-                 />
-            <button>Update</button>       
+      <div className="contentContainer">
+        <h2>Edit Note:</h2>
+        <form className="form" onSubmit={this.submitEditedNote}>
+          <input
+            className="title"
+            type="text"
+            name="title"
+            onChange={this.updateTitle}
+            value={this.state.noteToEdit.title}
+          />
+
+          <input
+            className="textBody"
+            type="text"
+            name="textBody"
+            onChange={this.updateTeaxtBody}
+            value={this.state.noteToEdit.textBody}
+          />
+          <button className="button" type="submit">
+            Update
+          </button>
         </form>
       </div>
-    )}
+    );
+  }
 }
-
 export default EditNote;

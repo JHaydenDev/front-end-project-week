@@ -5,6 +5,7 @@ import { Route, Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import NewNote from "./Components/NewNotesForm";
 import ViewNote from "./Components/ViewNote";
+import EditNote from "./Components/EditNote";
 
 //styling.///
 const MainApp = styled.div`
@@ -83,6 +84,7 @@ class App extends Component {
             path="/note/:id"
             render={props => <ViewNote {...props} />}
           />
+          <Route path="/note/edit/:id" component={EditNote} />
         </MainPage>
       </MainApp>
     );

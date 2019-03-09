@@ -45,7 +45,7 @@ class ViewNote extends Component {
           <NavLink to={`/note/edit/${this.props.match.params.id}`}>
             Edit
           </NavLink>
-          <Route path="/note/edit/:id" component={EditNote} />
+          
           <button>Delete</button>
 
           <DeleteNote id={this.props.match.params.id} {...this.props} />
