@@ -5,8 +5,8 @@ class Note extends React.Component {
   render() {
     return (
       <div className="note">
-        <Title>{this.props.note.title} </Title>
-        <Body> {this.props.note.textBody} </Body>
+        <h2>{this.props.note.title} </h2>
+        <p> {this.props.note.textBody} </p>
       </div>
     );
   }
